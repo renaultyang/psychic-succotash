@@ -1,0 +1,4 @@
+{
+  "dbName":"learnReact",
+  "mongodbUrl":"mongodb://localhost:27017"
+}
