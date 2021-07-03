@@ -1,10 +1,14 @@
 import Example7 from "./pages/Example7";
+import Example1 from "./pages/Example1";
+import Example2 from "./pages/Example2";
 import CanVans from "./pages/CanVans";
-function App(prop) {
+function App() {
   return (
     <div className="App">
-      <Example7></Example7>
-      <CanVans></CanVans>
+      {/* <Example1></Example1> */}
+      <Example2></Example2>
+      {/* <Example7></Example7> */}
+      {/* <CanVans></CanVans> */}
     </div>
   );
 }
