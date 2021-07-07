@@ -1,6 +1,6 @@
 import React,{ useReducer } from 'react'
-export const Store = React.createContext();
-export const Context = (prop) => {
+export const Context = React.createContext();
+export const Store = (prop) => {
   const [state, dispatch] = useReducer((state, action) => {
     // eslint-disable-next-line default-case
     switch (action.type) {
@@ -11,6 +11,6 @@ export const Context = (prop) => {
     }
   }, 0);
   return (
-    <Store.Provider value={{ state, dispatch }}>{prop.children}</Store.Provider>
+    <Context.Provider value={{ state, dispatch }}>{prop.children}</Context.Provider>
   );
 };
