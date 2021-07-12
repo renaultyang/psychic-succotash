@@ -22,3 +22,17 @@ useContext 和 useReducer 配合模拟redux,
 useMemo的目的是避免一部分代码反复执行，相关依赖不变不需要执行，代替shouldComponentUpdate
 useCallback的目的是避免函数重复定义，相关依赖不变不需要重复定义
 useEffect 代替 componentDidMount componentDidUpdate componentDidUnmount
+```js
+   // 实现componentWillUnmount的效果
+    function MyComponent(){
+        useEffect(()=>{
+            return ()=>{
+                // 这里的代码在组件被销毁后执行
+            }
+        })
+    }
+```
+
+自定义hook 
+1. 数名use开头
+2. 要用到useState
