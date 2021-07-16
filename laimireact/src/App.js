@@ -6,6 +6,7 @@ import Example4 from "./pages/Example4";
 import Example5 from "./pages/Example5";
 import Example6 from "./pages/Example6";
 import CanVans from "./pages/CanVans";
+import './index.css'
 function App() {
   return (
     <div className="App">
