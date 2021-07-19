@@ -9,7 +9,7 @@ const App = () => {
   const messages = {};
   messages['en'] = en_US;
   messages['zh'] = zh_CN;
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState('zh');
 
   return <IntlProvider locale={lang} messages={messages[lang]}>
     {
