@@ -1,28 +1,46 @@
 import { List, InputItem, Toast, Button } from 'antd-mobile';
 import React, { useState } from 'react';
 import { useIntl, FormattedMessage } from 'react-intl';
+import { login } from '../../utils/http/user'
+import store from 'storejs';
 const LoginForm = (prop) => {
   const [hasError, setHasError] = useState(false);
-  const [value, setValue] = useState('');
-  const [password, setPassworde] = useState('');
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState('password');
 
   const intl = useIntl(); // 对于占位符 placeholder 和 title 不支持使用 FormattedMessage组件
-  console.log(intl);
+  // console.log(intl);
   const onErrorClick = () => {
     if (hasError) {
       Toast.info('Please enter 11 digits');
     }
   };
-  const onChange = (value) => {
-    if (value.replace(/\s/g, '').length < 11) {
+   // 组件封装的参数并非原生参数
+  const onChange = (user) => {
+    if (user.replace(/\s/g, '').length < 11) {
       setHasError(true);
     } else {
       setHasError(false);
     }
-    setValue(value);
+    setUser(user);
   };
+  // 组件封装的参数并非原生参数
+  const inputPassword = (password) => {
+    setPassword(password.trim());
+  };
+  console.log(login)
 
+  const logIn = () => {
+    console.log({ user, password })
+    login({ user, password }).then((res) => {
+      console.log('res', res)
+      console.log('store', store)
+    
+        store.set('token', res.data.token)
+      
+    })
+  };
   return (
     <>
       <List
@@ -36,7 +54,7 @@ const LoginForm = (prop) => {
           clear
           onErrorClick={onErrorClick}
           onChange={onChange}
-          value={value}
+          value={user}
         ></InputItem>
       </List>
       <List
@@ -46,6 +64,8 @@ const LoginForm = (prop) => {
           placeholder={intl.formatMessage({ id: 'input_password' })}
           type={showPassword}
           clear
+          value={password}
+          onChange={inputPassword}
           extra={
             <>
               {showPassword === 'password' ? (
@@ -106,7 +126,7 @@ const LoginForm = (prop) => {
           }
         ></InputItem>
       </List>
-      <Button  style={{ backgroundColor:'#ff734c' , color: 'white',margin: '30px 10px', border:0,  borderRadius:'30px'}}>
+      <Button onClick={()=>logIn()} style={{ backgroundColor:'#ff734c' , color: 'white',margin: '30px 10px', border:0,  borderRadius:'30px'}}>
       <FormattedMessage id="login_in"></FormattedMessage>
       </Button>
     </>

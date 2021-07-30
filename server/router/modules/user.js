@@ -1,6 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
-const { find } = require('../../database/index')
+const { find } = require('../../database/index');// 从database中查询方法
 const { verify, makeToken }  = require('../../utils/token') 
 userRouter.get('/login', async (req, res ) => {
   try {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function loadfn(src) {
+      return new Promise((r,j) => {
+        let img_el = new Image();
+        img_el.onload = function (e) {
+          console.log(e)
+          r(img_el)
+        };
+        img_el.onerror = function (e) {
+          console.log(e)
+          j(e)
+        };
+        img_el.src = src;
+
+      })
+    }
+    const arr = [];
+    arr.push(loadfn(`./img/hua01.png`))
+    arr.push(loadfn(`./img/hua02.png`))
+    arr.push(loadfn(`./img/hua03.png`))
+    for(let i = 0; i < 19; i+=1) {
+      arr.push(loadfn(`./img/hua${i+1}.jpg`))
+    }
+    console.log(arr)
+    // Promise.all(arr).then(res => {
+    //   console.log(res)
+    //   res.forEach(el => {
+    //     document.body.appendChild(el)
+    //   })
+    // })
+
+    // loadfn('./img/hua1.jpg')
+    arr.forEach( async  p => {
+      const el = await p;
+      console.log(12121212)
+      document.body.appendChild(el)
+    })
+  </script>
+</body>
+</html>
